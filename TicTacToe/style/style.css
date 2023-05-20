@@ -1,0 +1,298 @@
+body{
+    margin: 0;
+    height: 100vh;
+    background-color: rgb(0, 5, 73);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+    user-select: none; 
+}
+.container{
+    height: 300px;
+    width: 300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    box-sizing: border-box;
+    background-color: white;
+    position: relative;
+    box-shadow: 0 0 8px 2px black;
+}
+.container > div{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-family: cursive;
+    text-transform: uppercase;
+    cursor: pointer;
+    background:  radial-gradient(white, rgb(228, 228, 228) 95%);
+    border: .5px solid rgb(207, 207, 207);
+    font-family: 'Fredoka One', cursive;
+}
+button{
+    height: 40px;
+    width: 100px;
+    background-color: red;
+    outline: none;
+    color: white;
+    border: none;
+    margin-top: 10px;
+}
+button:active{
+    opacity: .5;
+}
+#selectPlayer, #whowillStart{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.315);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Fredoka One', cursive;
+}
+#selectPlayer > div, #whowillStart > div{
+    max-width: 400px;
+    min-width: 300px;
+    width: 60%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+#selectPlayer > div > div, #whowillStart > div > div{
+    flex: 1;
+    display: flex;
+    font-size: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#selectPlayer > div > div > div, #whowillStart > div > div > div{
+    flex: 1;
+    border:1px solid rgb(216, 217, 235);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#selectPlayer button{
+    margin: auto;
+    margin-top: 20px;
+    width: 100%;
+    background-color: green;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.notifcation{
+    padding: 10px;
+    background-color: #bbffbb;
+    border-top: 2px solid rgb(0 121 17);
+    color: rgb(0 121 17);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    display: none;
+}
+[box='info']{
+    background-color: #bbe8ff;
+    border-top: 2px solid rgb(0 38 157);
+    color: rgb(0 38 157);
+}
+[box='error']{
+    background-color: #ffbbbb;
+    border-top: 2px solid rgb(180, 8, 8);
+    color: rgb(180, 8, 8);
+}
+#selectPlayer > div > input{
+    height: 40px;
+    margin: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgb(216, 217, 235);
+    padding-left: 10px;
+    box-sizing: s;
+    margin-left: 0;
+    margin-right: 0;
+
+}
+.remember{
+    font-size: 12px !important;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+    min-height: 30px;
+}
+.info{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px !important;
+    background-color: rgb(212, 239, 255);
+    color: rgb(0, 109, 182);
+    border: 1px solid rgb(0, 109, 182);
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.clear{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: white;
+    z-index: 1;
+    font-size: 15px;
+    text-decoration: underline;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    margin: 10px;
+    display: none;
+}
+h3{
+    color: white;
+}
+.user{
+    height: 35px;
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    border-radius: calc(35px / 2);
+    font-size: 14px;
+    padding-left: 10px;
+    font-weight: bold;
+    user-select: none;
+}
+.user:empty{
+    display: none;
+}
+.user span{
+    background-color: rgb(0, 5, 73);
+    display: inline-flex;
+    height: 100%;
+    width: 25px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.user > mode{
+    /* color: rgb(0, 5, 73); */
+    border-radius: 5px;
+    margin-right: 5px;
+}
+.container::before{
+    content: attr(msg);
+    position: absolute;
+    top:-30px;
+    color: white;
+    font-weight: bold;
+    padding-left: 5px;
+}
+.mode > div, #whowillStart > div > div{
+    font-family: 'Open Sans', sans-serif;
+    height: 50px !important;
+    font-size: 13px;
+    margin-top: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#currentMode{
+    position: absolute;
+    color: white;
+    top: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 2px solid white;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+
+}
+#whowillStart{
+    position: absolute;
+    z-index: 5;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.315);
+    display: flex;
+}
+#whowillStart > div > div{
+    font-size: 15px;
+    margin-top: 0;
+}
+#whowillStart > div > div > div{
+    justify-content: center;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 20px;
+}
+#whowillStart > div > div > div img{
+    margin:20px;
+}
+#whowillStart > div > div > div:active{
+    background-color: rgb(216, 217, 235);
+}
+#whowillStart{
+    display: none;
+}
+
+.wins{
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    display: none;
+}
+.wins > span{
+    padding-left: 10px;
+}
+@media only screen and (max-width: 550px){
+    #whowillStart > div{
+        width: 90%;
+    }
+}
+.sound{
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    background-color: white;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none
+}
+.sound > img{
+    height: 20px;
+    width: 20px;
+}

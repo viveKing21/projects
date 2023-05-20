@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - AI</title>
+    <link href="image/favicon.png" rel="icon" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="script/minimax.js" defer></script>
+    <script src="script/script.js" defer></script>
+</head>
+<body>
+    <div class="sound" onclick="soundChange(this)">
+        <img src="image/volume-high.png" />
+    </div>
+    <div id='whowillStart'>
+         <div>
+             <div>
+                 <div onclick="reset(true)">
+                    <img src="image/ai.png" height="50px" width="50px" />
+                    You start first
+                </div>
+                 <div onclick="reset()">
+                    <img src="image/human.png" height="50px" width="50px" />
+                    I will start first
+                </div>
+             </div>
+         </div>
+    </div>
+    <div id='selectPlayer'>
+          <div>
+              <div>
+                <div onclick="select('x', this)">X</div>
+                <div onclick="select('o', this)">O</div>
+              </div>
+              <div class="mode">
+                <div onclick="selectMode('easy', this)">Easy</div>
+                <div onclick="selectMode('hard', this)">Hard</div>
+              </div>
+              <input type="text" placeholder="Full Name" id='name'>
+              <label for="checkbox">
+                <div class="remember">Remember Choice <input type="checkbox" id="checkbox"/></div>
+              </label>
+              <div class="info">
+                  All the data will be saved on your own device, it wont be save on server
+                  (to save data on your device, make sure remember choice option is checked).
+              </div>
+              <button onclick="start()">START</button>
+          </div>
+    </div>
+    <div class="clear" onclick="clearStorage()">
+        Clear data
+    </div>
+    <div class="user"></div>
+    <div class="wins">WINS <span id='wins'>0</span> <span style="padding-right: 10px;">|</span> LOSE <span id='lose'>0</span></div>
+    <div class="container" msg=''>
+        <div id="0"></div>
+        <div id="1"></div>
+        <div id="2"></div>
+        <div id="3"></div>
+        <div id="4"></div>
+        <div id="5"></div>
+        <div id="6"></div>
+        <div id="7"></div>
+        <div id="8"></div>
+    </div>
+    <button onclick="onclickreset()">Reset</button>
+    <div class="notifcation"></div>
+</body>
+</html>
