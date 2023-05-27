@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            gap: 10px;
+            background-color: rgb(7, 8, 17);
+            margin: 0;
+        }
+        .timer{
+            padding: 20px;
+            background-color: rgb(0, 29, 43);
+            border-radius: 5px;
+            box-shadow: 0 0 20px 4px #00000087;
+            display: flex;
+            gap: 20px;
+            --theme: #00d7ff
+        }
+        .timer > div{
+            display: flex;
+            gap: 10px;
+        }
+        .timer > .divider{
+            height: 100%;
+            position: relative;
+            width: 5px;
+        }
+        .timer > .divider::before, .timer > .divider::after{
+            content: "";;
+            position: absolute;
+            height: 5px;
+            width: 5px;
+            background-color: var(--theme, red);
+            top: 15px;
+        }
+        .timer > .divider::after{
+            top: auto;
+            bottom: 15px;
+        }
+        /* Digit design start */
+        .timer .digit{
+            position: relative;
+            width: 30px;
+            aspect-ratio: 1/2;
+        }
+        .timer .digit > div{
+            background-color: var(--theme, red);
+            position: absolute;
+        }
+        .timer .digit .left{
+            height: calc(50% - 1px);
+            width: calc(5 / 30 * 100%);
+            left: 0;
+            top: 1px;
+            clip-path: polygon(0 0, 0 0, 100% 15%, 100% 85%, 0 99%, 0 100%, 0% 100%, 0% 0%);
+        }
+        .timer .digit .right{
+            height: calc(50% - 1px);
+            width: calc(5 / 30 * 100%);
+            top: 1px;
+            right: 0;
+            clip-path: polygon(100% 0, 100% 0, 100% 15%, 100% 85%, 100% 99%, 100% 100%, 0% 85%, 0% 15%);
+        }
+        .timer .digit .top{
+            height: calc(5 / 30 * 100% / 2);
+            width: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 0, 100% 0, 81% 100%, 19% 100%, 0 0, 0 0)
+        }
+        .timer .digit .middle{
+            height: calc(8 / 30 * 100% / 2);
+            width: calc(100% - 2px);
+            margin: auto;
+            transform: translateY(-50%);
+            top: 50%;
+            left: 0;
+            right: 0;
+            clip-path: polygon(18% 0%, 83% 0%, 100% 50%, 100% 50%, 83% 100%, 17% 100%, 0 50%, 0 50%)
+        }
+        .timer .digit .side-bottom{
+            top: auto;
+            bottom: 1px;
+        }
+        .timer .digit .bottom{
+            height: calc(5 / 30 * 100% / 2);
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 100% 100%, 100% 100%, 0% 100%, 0 100%, 0 100%)
+        }
+        .digit[data-digit="0"] .middle{
+            opacity: .2;
+        }
+        .digit[data-digit="1"] div:not(.right){
+            opacity: .2;
+        }
+        .digit[data-digit="2"] :is(.left:not(.side-bottom), .right.side-bottom){
+            opacity: .2;
+        }
+        .digit[data-digit="3"] .left{
+            opacity: .2;
+        }
+        .digit[data-digit="4"] :is(.left.side-bottom, .top, .bottom){
+            opacity: .2;
+        }
+        .digit[data-digit="5"] :is(.left.side-bottom, .right:not(.side-bottom)){
+            opacity: .2;
+        }
+        .digit[data-digit="6"] .right:not(.side-bottom){
+            opacity: .2;
+        }
+        .digit[data-digit="7"] :is(.middle, .left, .bottom){
+            opacity: .2;
+        }
+        .digit[data-digit="8"] div{
+            opacity: 1;
+        }
+        .digit[data-digit="9"] .left.side-bottom{
+            opacity: .2;
+        }
+        /* Digit design end */
+        .control{
+            display: flex;
+            gap: 30px;
+            padding: 10px;
+        }
+        button{
+            height: 40px;
+            width: 100px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+            background-color: white;
+            font-family: Impact;
+            letter-spacing: 1px;
+            color: rgb(7, 8, 17);
+            transition: .5s;
+            cursor: pointer;
+            box-shadow: 0 0 20px 4px #00000087;
+        }
+        button:active{
+            opacity: .5;
+        }
+        button.disabled{
+            opacity: .5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer">
+        <div class="hours">
+            <div class="digit" data-digit="0">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="top"></div>
+                <div class="middle"></div>
+                <div class="left side-bottom"></div>
+                <div class="right side-bottom"></div>
+                <div class="bottom"></div>
+            </div>
+            <div class="digit" data-digit="0">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="top"></div>
+                <div class="middle"></div>
+                <div class="left side-bottom"></div>
+                <div class="right side-bottom"></div>
+                <div class="bottom"></div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="minutes">
+            <div class="digit" data-digit="0">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="top"></div>
+                <div class="middle"></div>
+                <div class="left side-bottom"></div>
+                <div class="right side-bottom"></div>
+                <div class="bottom"></div>
+            </div>
+            <div class="digit" data-digit="0">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="top"></div>
+                <div class="middle"></div>
+                <div class="left side-bottom"></div>
+                <div class="right side-bottom"></div>
+                <div class="bottom"></div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="seconds">
+            <div class="digit" data-digit="0">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="top"></div>
+                <div class="middle"></div>
+                <div class="left side-bottom"></div>
+                <div class="right side-bottom"></div>
+                <div class="bottom"></div>
+            </div>
+            <div class="digit" data-digit="0">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="top"></div>
+                <div class="middle"></div>
+                <div class="left side-bottom"></div>
+                <div class="right side-bottom"></div>
+                <div class="bottom"></div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="control">
+        <button class="start">START</button>
+        <button class="stop disabled">STOP</button>
+        <button class="clear disabled">CLEAR</button>
+    </div>
+    <script>
+        let timer = document.querySelector('.timer')
+        let control = document.querySelector('.control')
+        
+        // digit selectors
+        let hours = Array.from(timer.querySelectorAll(".hours .digit"))
+        let minutes = Array.from(timer.querySelectorAll(".minutes .digit"))
+        let seconds = Array.from(timer.querySelectorAll(".seconds .digit"))
+        
+        // buttons
+        let start = control.querySelector(".start")
+        let stop = control.querySelector(".stop")
+        let clear = control.querySelector(".clear")
+
+        let interval = null, time = 0;
+
+        const startTimer = () => {
+            clearTimeout(interval)
+            interval = setInterval(() => {
+                updateTime(++time);
+            }, 1000)
+            start.classList.add('disabled');
+            stop.classList.remove('disabled');
+            clear.classList.remove('disabled');
+        }
+        const stopTimer = () => {
+            clearTimeout(interval)
+            stop.classList.add('disabled');
+            start.classList.remove('disabled');
+            clear.classList.remove('disabled');
+        }
+        const clearTimer = () => {
+            time = 0
+            stopTimer()
+            updateTime(time);
+            start.classList.remove('disabled');
+            stop.classList.add('disabled');
+            clear.classList.add('disabled');
+        }
+        
+        start.onclick = startTimer
+        stop.onclick = stopTimer
+        clear.onclick = clearTimer
+
+        updateTime(time) // initialize
+
+        function updateTime(time){
+            let h = Math.floor(time / 60 / 60)
+            let m = Math.floor(time / 60) % 60
+            let s = time % 60;
+
+            hours[0].dataset.digit = Math.floor(h / 10)
+            hours[1].dataset.digit = h % 10
+
+            minutes[0].dataset.digit = Math.floor(m / 10)
+            minutes[1].dataset.digit = m % 10
+
+            seconds[0].dataset.digit = Math.floor(s / 10)
+            seconds[1].dataset.digit = s % 10
+        } 
+    </script>
+</body>
+</html>
