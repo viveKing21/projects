@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compete With Neighbour</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Compete With Neighbour</h1>
+    <div class="container" state="pause">
+        <div class="size-control" size="5">
+            <input type="range" class="size-range" value="5" min="5" max="15">
+        </div>
+        <div class="play-btn player">
+            I Will Play First
+        </div>
+        <div class="play-btn opponent">
+            You Play First
+        </div>
+        <div class="loader"></div>
+        <section class="game">
+            <div class="score man">
+                🧔 <span class="score-player">0</span>
+            </div>
+            <div class="board" turn="opponent"></div>
+            <div class="score ai">
+                🤖 <span class="score-opponent">0</span>
+            </div>
+            <div class="info">
+                You are competing with your neighbour. Both of you have an array of n numbers on which you are playing a game. The rules of the game is such that the player playing the move gets to choose one of the two numbers present at the ends. The player ending with larger sum wins the game.
+            </div>
+        </section>
+    </div>
+    <dialog>
+        <span class="dialog-msg">
+            Congrats 🎉 <br>
+            You won the match
+        </span><br>
+        <button class="restart">
+            Restart
+        </button>
+    </dialog>
+</body>
+</html>
